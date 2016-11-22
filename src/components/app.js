@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import SearchBar from '../containers/search_bar';
+import GraphList from '../containers/graph_list';
 
 export default class App extends Component {
   render() {
     return (
-      <div>React simple starter</div>
+      <div className="container">
+        <SearchBar />
+        <GraphList />
+      </div>
     );
   }
 }
