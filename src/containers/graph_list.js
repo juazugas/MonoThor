@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import GraphItem from '../components/graph_item';
 
-export default class GraphList extends Component {
+class GraphList extends Component {
 
   renderGraphItems () {
     this.props.graphs.map( (graph) => {
@@ -28,3 +29,5 @@ function mapStateToProps (state) {
     graphs: state.graphs
   }
 }
+
+export default connect(mapStateToProps)(GraphList);

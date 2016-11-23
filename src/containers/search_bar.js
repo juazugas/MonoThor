@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { selectApp, selectPool, selectInstance } from '../actions/index';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
 
   constructor(props) {
     super(props);
@@ -19,54 +22,83 @@ export default class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+
+
   }
 
   onSelectAppChange(event) {
-    this.setState({app: event.target.value});
+    let app = event.target.value;
+    this.setState({app: app, pool: ''});
+
+    this.props.selectApp(app);
   }
 
   onSelectPoolChange(event) {
-    this.setState({pool: event.target.value});
+    let pool = event.target.value;
+    this.setState({pool: pool, instance: ''});
+
+    this.props.selectPool({app:this.state.app, pool:pool});
   }
 
   onSelectInstanceChange(event) {
-    this.setState({instance: event.target.value});
+    let instance =  event.target.value;
+    this.setState({instance: instance});
+
+    this.props.selectInstance(instance);
   }
 
   render() {
     return (
       <div className="well">
         <form name="select-monitor" className="form-inline" onSubmit={this.onFormSubmit}>
-          <div className="input-group">
-            <select 
+          <div className="form-group">
+            <select
                 value={this.state.app}
                 onChange={this.onSelectAppChange}
                 className="form-control">
               <option value="">Select App</option>
-              <option value="app1">App1</option>
-              <option value="app2">App2</option>
+              { this.props.apps.map((app)=> <option key={app} value={app}>{app}</option>) }
             </select>
+          </div>
+          <div className="form-group">
             <select 
               value={this.state.pool}
               onChange={this.onSelectPoolChange}
               className="form-control" >
               <option value="">Select Pool</option>
-              <option value="1">Pool #1</option>
-              <option value="2">Pool #2</option>
+              { this.props.pools.map((pool)=> <option key={pool} value={pool}>Pool {pool}</option>) }
             </select>
+          </div>
+          <div className="form-group">
             <select 
               value={this.state.instance}
               onChange={this.onSelectInstanceChange}
               className="form-control" >
               <option value="">Select Instance</option>
-              <option value="inst01">Instance #01</option>
-              <option value="inst02">Instance #02</option>
+              { this.props.instances.map((instance)=> <option key={instance} value={instance}>{instance}</option>) }
             </select>
           </div>
-          <button type="submit" className="btn btn-default">Submit</button>
+          <div className="form-group">
+            <button type="submit" className="btn btn-default">Submit</button>
+          </div>
         </form>
       </div>
     );
   }
 
 }
+
+function mapStateToProps(state) {
+  return {
+    apps: state.apps,
+    pools: state.pools || [],
+    machines: state.machines || [],
+    instances: state.instances || []
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectApp, selectPool, selectInstance }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar); 
