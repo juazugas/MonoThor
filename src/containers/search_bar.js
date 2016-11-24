@@ -28,7 +28,11 @@ class SearchBar extends Component {
 
   onSelectAppChange(event) {
     let app = event.target.value;
-    this.setState({app: app, pool: ''});
+    this.setState({
+      app: app, 
+      pool: '', 
+      instance: ''
+    });
 
     this.props.selectApp(app);
   }
@@ -78,8 +82,8 @@ class SearchBar extends Component {
               { this.props.instances.map((instance)=> <option key={instance} value={instance}>{instance}</option>) }
             </select>
           </div>
-          <div className="form-group col-md-2 text-right">
-            <button type="submit" className="btn btn-default">Submit</button>
+          <div className="form-group col-md-2">
+            <button type="submit" className="btn btn-default pull-xs-right">Submit</button>
           </div>
         </form>
       </div>

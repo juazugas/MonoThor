@@ -12,7 +12,7 @@ function payloadToGraph (times, payload) {
 export default function (state=[], action) {
   switch (action.type) {
   case SHOW_GRAPHS:
-    if (action.payload.pool === 'test' || action.payload.pool === 'test') {
+    if (action.payload.pool === 'test' || action.payload.pool === 'pre') {
       return payloadToGraph(2, action.payload);    
     } else if (action.payload.app === 'app1' ) {
       return payloadToGraph(4, action.payload);    
