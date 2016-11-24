@@ -6,6 +6,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
+        <h2>MonoThor <small>god style</small></h2>
         <SearchBar />
         <GraphList />
       </div>

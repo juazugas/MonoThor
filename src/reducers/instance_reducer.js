@@ -5,7 +5,7 @@ function instanceByApp (app) {
   switch (app) {
     case 'app1':
       return ["00", "01"];
-    case 'app2': 
+    case 'app2': case 'app3': 
       return ["00","01","02","03","04","05"];
   }
   return [];

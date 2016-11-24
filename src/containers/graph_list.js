@@ -5,8 +5,12 @@ import GraphItem from '../components/graph_item';
 class GraphList extends Component {
 
   renderGraphItems () {
-    this.props.graphs.map( (graph) => {
-      return <GraphItem graph={graph} />;
+    return this.props.graphs.map( (graph) => {
+      return (
+        <div className="col-md-4">
+          <GraphItem graph={graph} />
+        </div>
+      );
     });
   }
 
@@ -17,7 +21,9 @@ class GraphList extends Component {
 
     return (
       <div className="container">
-        {this.renderGraphItems()}
+        <div className="row">
+          {this.renderGraphItems()}
+        </div>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectApp, selectPool, selectInstance } from '../actions/index';
+import { showGraphs, selectApp, selectPool, selectInstance } from '../actions/index';
 
 class SearchBar extends Component {
 
@@ -23,7 +23,7 @@ class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
-
+    this.props.showGraphs(this.state);
   }
 
   onSelectAppChange(event) {
@@ -49,9 +49,9 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="well">
+      <div className="jumbotron">
         <form name="select-monitor" className="form-inline" onSubmit={this.onFormSubmit}>
-          <div className="form-group">
+          <div className="form-group col-md-2">
             <select
                 value={this.state.app}
                 onChange={this.onSelectAppChange}
@@ -60,7 +60,7 @@ class SearchBar extends Component {
               { this.props.apps.map((app)=> <option key={app} value={app}>{app}</option>) }
             </select>
           </div>
-          <div className="form-group">
+          <div className="form-group col-md-2">
             <select 
               value={this.state.pool}
               onChange={this.onSelectPoolChange}
@@ -69,7 +69,7 @@ class SearchBar extends Component {
               { this.props.pools.map((pool)=> <option key={pool} value={pool}>Pool {pool}</option>) }
             </select>
           </div>
-          <div className="form-group">
+          <div className="form-group col-md-2">
             <select 
               value={this.state.instance}
               onChange={this.onSelectInstanceChange}
@@ -78,7 +78,7 @@ class SearchBar extends Component {
               { this.props.instances.map((instance)=> <option key={instance} value={instance}>{instance}</option>) }
             </select>
           </div>
-          <div className="form-group">
+          <div className="form-group col-md-2 text-right">
             <button type="submit" className="btn btn-default">Submit</button>
           </div>
         </form>
@@ -98,7 +98,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectApp, selectPool, selectInstance }, dispatch);
+  return bindActionCreators({ showGraphs, selectApp, selectPool, selectInstance }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar); 
