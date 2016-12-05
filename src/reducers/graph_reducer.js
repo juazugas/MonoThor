@@ -2,10 +2,15 @@ import _ from 'lodash';
 import { SHOW_GRAPHS } from '../actions/types';
 import { data } from '../data';
 
-
 function payloadToGraph (times, payload) {
+  console.log(payload);
+  const GRAPH_URL = `http://machine${payload.pool}{index}/cgi-bin/draw.cgi?Mode=show&Start=end+-+20+min&Base=${payload.app}${payload.instance}`;
+
   return _.map(_.times(times), function (index) {
-    return _.extend(_.clone(payload), {machine: 'machine'+index})
+    return _.extend(_.clone(payload), {
+      machine: `machine${index}`,
+      url: GRAPH_URL.replace('{index}',index)
+    })
   });
 }
 
