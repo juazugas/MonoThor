@@ -1,12 +1,42 @@
 import React, { Component } from 'react';
 
 export default class GraphItem extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      src: props.graph.url,
+      dt: new Date().toISOString()
+    }
+  }
+
+  componentDidMount() {
+    var intervalId = setInterval(() => {
+      var now = new Date();
+      var index = this.state.src.lastIndexOf('&timdt=') > 0 ? this.state.src.lastIndexOf('&timdt=') : this.state.src.length;
+      var newSrc = this.state.src.substring(0, index);
+      newSrc+= '&timdt=' + now.getTime();
+      console.log(now.toISOString(), newSrc);
+      this.setState({
+        src: newSrc,
+        dt: now.toISOString()
+      });
+    }, 3000);
+    this.setState({
+      interval: intervalId,
+    });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval);
+  }
 
   render() {
     return (
       <div className="thumbnail">
-        <img className="img-thumbnail img-responsive" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTg5MzRmZjZiYiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1ODkzNGZmNmJiIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1IiB5PSI3NC44Ij4xNDB4MTQwPC90ZXh0PjwvZz48L2c+PC9zdmc+" />
-        <div class="caption">
+        <img className="img-thumbnail img-responsive" src={this.state.src} />
+        <div className="caption">
+          <span className="xtra-small float-right">{this.state.dt}</span>
         	<h4>{this.props.graph.app}-{this.props.graph.instance}</h4>
         	<p><a href={this.props.graph.url}>{this.props.graph.machine}</a> ({this.props.graph.pool})</p>
         </div>

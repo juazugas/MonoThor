@@ -7,7 +7,7 @@ class GraphList extends Component {
   renderGraphItems () {
     return this.props.graphs.map( (graph) => {
       return (
-        <div className="col-md-4">
+        <div className="col-md-4" key={graph.machine}>
           <GraphItem graph={graph} />
         </div>
       );
