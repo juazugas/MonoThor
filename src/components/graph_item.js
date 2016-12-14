@@ -30,14 +30,11 @@ export default class GraphItem extends Component {
   }
 
   componentDidMount() {
-    var intervalId = this.doStartInterval(this.state.src);
-    this.setState({
-      interval: intervalId
-    });
+    this.timerID = this.doStartInterval(this.state.src);
   }
 
   componentWillUnmount() {
-    this.doStopInterval(this.state.interval);
+    this.doStopInterval(this.timerID);
   }
 
   render() {
