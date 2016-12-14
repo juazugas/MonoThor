@@ -1,8 +1,10 @@
-import { SELECT_APP } from '../actions/types';
+import { CLEAR_GRAPHS, SELECT_APP } from '../actions/types';
 import { data } from '../data';
 
 export default (state=[], action) => {
   switch (action.type) {
+  case CLEAR_GRAPHS:
+    return [];
   case SELECT_APP:
     switch (action.payload) {
       case 'app1':

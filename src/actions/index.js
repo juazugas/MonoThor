@@ -2,7 +2,8 @@ import {
   SELECT_APP,
   SELECT_POOL,
   SELECT_INSTANCE,
-  SHOW_GRAPHS
+  SHOW_GRAPHS,
+  CLEAR_GRAPHS
 } from './types';
 
 export function selectApp (app) {
@@ -30,5 +31,11 @@ export function showGraphs (data) {
   return {
     type: SHOW_GRAPHS,
     payload: data
+  };
+}
+
+export function clearGraphs () {
+  return {
+    type: CLEAR_GRAPHS
   };
 }

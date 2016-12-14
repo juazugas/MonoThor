@@ -1,4 +1,4 @@
-import { SELECT_APP, SELECT_POOL } from '../actions/types';
+import { CLEAR_GRAPHS, SELECT_APP, SELECT_POOL } from '../actions/types';
 import { data } from '../data';
 
 function instanceByApp (app) {
@@ -14,6 +14,8 @@ function instanceByApp (app) {
 
 export default function (state=[], action) {
   switch (action.type) {
+  case CLEAR_GRAPHS: 
+    return [];
   case SELECT_APP:
     return instanceByApp(action.payload);
   case SELECT_POOL: 

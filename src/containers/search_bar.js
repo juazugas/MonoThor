@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { showGraphs, selectApp, selectPool, selectInstance } from '../actions/index';
+import { showGraphs, selectApp, selectPool, selectInstance, clearGraphs } from '../actions/index';
 
 class SearchBar extends Component {
 
@@ -11,10 +11,12 @@ class SearchBar extends Component {
     this.state = { 
       app: '', 
       pool: '',
-      instance: ''
+      instance: '',
+      clearDisabled: true
     };
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onClearClick = this.onClearClick.bind(this);
     this.onSelectAppChange = this.onSelectAppChange.bind(this);
     this.onSelectPoolChange = this.onSelectPoolChange.bind(this);
     this.onSelectInstanceChange = this.onSelectInstanceChange.bind(this);
@@ -23,7 +25,22 @@ class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
+    this.setState({
+      clearDisabled: false
+    });
     this.props.showGraphs(this.state);
+  }
+
+  onClearClick(event) {
+    event.preventDefault();
+
+    this.setState({
+      app: '', 
+      pool: '', 
+      instance: '',
+      clearDisabled: true
+    });
+    this.props.clearGraphs();
   }
 
   onSelectAppChange(event) {
@@ -82,8 +99,13 @@ class SearchBar extends Component {
               { this.props.instances.map((instance)=> <option key={instance} value={instance}>{instance}</option>) }
             </select>
           </div>
-          <div className="form-group col-md-2 float-right">
-            <button type="submit" className="btn btn-default pull-xs-right">Submit</button>
+          <div className="form-group col-md-3 float-right">
+            <button type="submit" className="btn btn-default pull-xs-right">Submit</button> &nbsp;
+            <button 
+              type="button" 
+              onClick={this.onClearClick} 
+              disabled={this.state.clearDisabled}
+              className="btn btn-warning pull-xs-right">Clear</button>
           </div>
         </form>
       </div>
@@ -102,7 +124,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ showGraphs, selectApp, selectPool, selectInstance }, dispatch);
+  return bindActionCreators({ 
+      showGraphs, selectApp, selectPool, selectInstance, clearGraphs 
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar); 

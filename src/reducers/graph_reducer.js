@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { SHOW_GRAPHS } from '../actions/types';
+import { CLEAR_GRAPHS, SHOW_GRAPHS } from '../actions/types';
 import { data } from '../data';
 
 function payloadToGraph (times, payload) {
@@ -16,6 +16,8 @@ function payloadToGraph (times, payload) {
 
 export default function (state=[], action) {
   switch (action.type) {
+  case CLEAR_GRAPHS:
+    return [];
   case SHOW_GRAPHS:
     if (action.payload.pool === 'test' || action.payload.pool === 'pre') {
       return payloadToGraph(2, action.payload);    
