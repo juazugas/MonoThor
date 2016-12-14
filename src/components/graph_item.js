@@ -8,27 +8,36 @@ export default class GraphItem extends Component {
       src: props.graph.url,
       dt: new Date().toISOString()
     }
+
+    this.doStartInterval = this.doStartInterval.bind(this);
   }
 
-  componentDidMount() {
-    var intervalId = setInterval(() => {
+  doStartInterval (src) {
+    return setInterval(() => {
+      var index = src.lastIndexOf('&timdt=') > 0 ? src.lastIndexOf('&timdt=') : src.length;
+      var newSrc = src.substring(0, index);
       var now = new Date();
-      var index = this.state.src.lastIndexOf('&timdt=') > 0 ? this.state.src.lastIndexOf('&timdt=') : this.state.src.length;
-      var newSrc = this.state.src.substring(0, index);
       newSrc+= '&timdt=' + now.getTime();
-      console.log(now.toISOString(), newSrc);
       this.setState({
         src: newSrc,
         dt: now.toISOString()
       });
     }, 3000);
+  }
+
+  doStopInterval (intervalId) {
+    clearInterval(intervalId);
+  }
+
+  componentDidMount() {
+    var intervalId = this.doStartInterval(this.state.src);
     this.setState({
-      interval: intervalId,
+      interval: intervalId
     });
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.interval);
+    this.doStopInterval(this.state.interval);
   }
 
   render() {

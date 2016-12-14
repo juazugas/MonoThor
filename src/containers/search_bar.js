@@ -82,7 +82,7 @@ class SearchBar extends Component {
               { this.props.instances.map((instance)=> <option key={instance} value={instance}>{instance}</option>) }
             </select>
           </div>
-          <div className="form-group col-md-2">
+          <div className="form-group col-md-2 float-right">
             <button type="submit" className="btn btn-default pull-xs-right">Submit</button>
           </div>
         </form>
