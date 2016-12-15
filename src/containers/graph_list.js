@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import GraphItem from '../components/graph_item';
 import TimerControl from '../components/timer_control';
+import { startTimer, stopTimer } from '../actions/index';
 
 class GraphList extends Component {
 
@@ -16,7 +18,7 @@ class GraphList extends Component {
   }
 
   render() {
-    if (!this.props.graphs) {
+    if (!this.props.graphs || this.props.graphs.length==0) {
       return <div className="container">Select the app to monitor</div>;
     }
 
@@ -24,9 +26,9 @@ class GraphList extends Component {
 
     return (
       <div className="container">
-        <TimerControl 
-          startTimer={startTimer} 
-          stopTimer={stopTimer} 
+        <TimerControl
+          startTimer={startTimer}
+          stopTimer={stopTimer}
           timer={timer} />
         <div className="row">
           {this.renderGraphItems()}
@@ -45,4 +47,10 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(GraphList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+      startTimer, stopTimer
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GraphList);
