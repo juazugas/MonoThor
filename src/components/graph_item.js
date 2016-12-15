@@ -37,6 +37,16 @@ export default class GraphItem extends Component {
     this.doStopInterval(this.timerID);
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    this.setState({
+      src: nextProps.graph.url,
+      dt: new Date().toISOString()
+    });
+    this.doStopInterval(this.timerID);
+    this.timerID = this.doStartInterval(nextProps.graph.url);
+  }
+
   render() {
     return (
       <div className="thumbnail">
