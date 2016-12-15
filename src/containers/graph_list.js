@@ -40,7 +40,6 @@ class GraphList extends Component {
 }
 
 function mapStateToProps (state) {
-  console.log(state);
   return {
     graphs: state.graphs,
     timer: state.timer
