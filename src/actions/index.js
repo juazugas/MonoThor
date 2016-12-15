@@ -3,7 +3,9 @@ import {
   SELECT_POOL,
   SELECT_INSTANCE,
   SHOW_GRAPHS,
-  CLEAR_GRAPHS
+  CLEAR_GRAPHS,
+  START_TIMER,
+  STOP_TIMER
 } from './types';
 
 export function selectApp (app) {
@@ -37,5 +39,17 @@ export function showGraphs (data) {
 export function clearGraphs () {
   return {
     type: CLEAR_GRAPHS
+  };
+}
+
+export function startTimer () {
+  return {
+    type: START_TIMER
+  };
+}
+
+export function stopTimer () {
+  return {
+    type: STOP_TIMER
   };
 }

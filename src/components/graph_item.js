@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { START_TIMER, STOP_TIMER } from '../actions/types';
 
 export default class GraphItem extends Component {
   
@@ -8,12 +9,15 @@ export default class GraphItem extends Component {
       src: props.graph.url,
       dt: new Date().toISOString()
     }
+    this.timerID = false;
 
     this.doStartInterval = this.doStartInterval.bind(this);
+    this.doStopInterval = this.doStopInterval.bind(this);
+    this.isRunningInterval = this.isRunningInterval.bind(this);
   }
 
   doStartInterval (src) {
-    return setInterval(() => {
+    this.timerID = setInterval(() => {
       var index = src.lastIndexOf('&timdt=') > 0 ? src.lastIndexOf('&timdt=') : src.length;
       var newSrc = src.substring(0, index);
       var now = new Date();
@@ -25,16 +29,29 @@ export default class GraphItem extends Component {
     }, 3000);
   }
 
-  doStopInterval (intervalId) {
-    clearInterval(intervalId);
+  doStopInterval () {
+    clearInterval(this.timerID);
+    this.timerID = false;
+  }
+
+  isRunningInterval() {
+    return this.timerID !== false;
   }
 
   componentDidMount() {
-    this.timerID = this.doStartInterval(this.state.src);
+    this.doStartInterval(this.state.src);
   }
 
   componentWillUnmount() {
-    this.doStopInterval(this.timerID);
+    this.doStopInterval();
+  }
+
+  componentWillUpdate() {
+    if (this.props.timer === START_TIMER && !this.isRunningInterval()) {
+      doStartInterval(this.state.src);
+    } else if (this.props.timer === STOP_TIMER && this.isRunningInterval()) {
+      doStartInterval();
+    }
   }
 
   render() {
