@@ -19,11 +19,11 @@ export default function (state=[], action) {
     return [];
   case SHOW_GRAPHS:
     if (action.payload.pool === 'test' || action.payload.pool === 'pre') {
-      return payloadToGraph(2, action.payload);    
+      return payloadToGraph(2, action.payload);
     } else if (action.payload.app === 'app1' ) {
-      return payloadToGraph(4, action.payload);    
+      return payloadToGraph(4, action.payload);
     } else {
-      return payloadToGraph(6, action.payload);    
+      return payloadToGraph(6, action.payload);
     }
   }
 

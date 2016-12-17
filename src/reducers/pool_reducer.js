@@ -9,7 +9,7 @@ export default (state=[], action) => {
     switch (action.payload) {
       case 'app1':
         return ["test", "pre", "1", "2", "3"];
-      default : 
+      default :
         return [ "test", "pre", "0" , "1", "2", "3", "4" ];
     }
   }

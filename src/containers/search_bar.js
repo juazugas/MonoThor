@@ -8,8 +8,8 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
-      app: '', 
+    this.state = {
+      app: '',
       pool: '',
       instance: '',
       clearDisabled: true
@@ -35,8 +35,8 @@ class SearchBar extends Component {
     event.preventDefault();
 
     this.setState({
-      app: '', 
-      pool: '', 
+      app: '',
+      pool: '',
       instance: '',
       clearDisabled: true
     });
@@ -46,8 +46,8 @@ class SearchBar extends Component {
   onSelectAppChange(event) {
     let app = event.target.value;
     this.setState({
-      app: app, 
-      pool: '', 
+      app: app,
+      pool: '',
       instance: ''
     });
 
@@ -82,7 +82,7 @@ class SearchBar extends Component {
             </select>
           </div>
           <div className="form-group col-md-2">
-            <select 
+            <select
               value={this.state.pool}
               onChange={this.onSelectPoolChange}
               className="form-control" >
@@ -91,7 +91,7 @@ class SearchBar extends Component {
             </select>
           </div>
           <div className="form-group col-md-2">
-            <select 
+            <select
               value={this.state.instance}
               onChange={this.onSelectInstanceChange}
               className="form-control" >
@@ -101,9 +101,9 @@ class SearchBar extends Component {
           </div>
           <div className="form-group col-md-3 float-right">
             <button type="submit" className="btn btn-default pull-xs-right">Submit</button> &nbsp;
-            <button 
-              type="button" 
-              onClick={this.onClearClick} 
+            <button
+              type="button"
+              onClick={this.onClearClick}
               disabled={this.state.clearDisabled}
               className="btn btn-warning pull-xs-right">Clear</button>
           </div>
@@ -124,9 +124,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ 
-      showGraphs, selectApp, selectPool, selectInstance, clearGraphs 
+  return bindActionCreators({
+      showGraphs, selectApp, selectPool, selectInstance, clearGraphs
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar); 
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
