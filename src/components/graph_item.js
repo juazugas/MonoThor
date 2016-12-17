@@ -63,10 +63,17 @@ export default class GraphItem extends Component {
     }
   }
 
+  onErrorImage (event) {
+    event.target.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+  }
+
   render() {
     return (
       <div className="thumbnail">
-        <img className="img-thumbnail img-responsive" src={this.state.src} />
+        <img
+          className="img-thumbnail img-responsive"
+          src={this.state.src}
+          onError={this.onErrorImage.bind(this)} />
         <div className="caption">
           <span className="xtra-small float-right">{this.state.dt}</span>
           <h4>{this.props.graph.app}-{this.props.graph.instance}</h4>
