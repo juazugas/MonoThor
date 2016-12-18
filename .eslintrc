@@ -4,7 +4,23 @@
     "browser": true,
     "node": true
   },
+  "plugins": [
+    "react"
+  ],
+  /** TODO: 
+    https://github.com/rangle/react-redux-example/blob/master/.eslintrc
+    http://glenn-roberts.com/2015/11/19/eslint-config-for-react-redux-projects.html
+   */
   "rules": {
-    "quotes": [2, "single"]
+    "quotes": [2, "single"],
+    "react/jsx-no-bind": [2, {
+      "allowArrowFunctions": true,
+      "allowBind": false,
+      "ignoreRefs": true
+    }],
+    "react/no-did-update-set-state": 2,
+    "react/no-unknown-property": 2,
+    "react/prop-types": 1,
+    "react/react-in-jsx-scope": 2
   }
 }

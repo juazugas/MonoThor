@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { STOP_TIMER } from '../actions/types';
 
-export default (props) => {
+function TimerControl (props) {
   const timerActive = props.timer === STOP_TIMER;
 
   return (
@@ -26,3 +26,10 @@ export default (props) => {
     );
 
 }
+TimerControl.propTypes = {
+  timer: React.PropTypes.string.isRequired,
+  startTimer: React.PropTypes.func.isRequired,
+  stopTimer: React.PropTypes.func.isRequired
+};
+
+export default TimerControl;

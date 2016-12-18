@@ -108,6 +108,16 @@ class SearchBar extends Component {
   }
 
 }
+SearchBar.propTypes = {
+  apps: React.PropTypes.array.isRequired,
+  pools: React.PropTypes.array.isRequired,
+  instances: React.PropTypes.array.isRequired,
+  showGraphs: React.PropTypes.func.isRequired,
+  clearGraphs: React.PropTypes.func.isRequired,
+  selectApp: React.PropTypes.func.isRequired,
+  selectPool: React.PropTypes.func.isRequired,
+  selectInstance: React.PropTypes.func.isRequired
+};
 
 function mapStateToProps(state) {
   return {

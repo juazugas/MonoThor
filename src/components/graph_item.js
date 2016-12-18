@@ -3,6 +3,11 @@ import { START_TIMER, STOP_TIMER } from '../actions/types';
 
 export default class GraphItem extends Component {
 
+  static propTypes = {
+    timer: React.PropTypes.string.isRequired,
+    graph: React.PropTypes.object.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +20,7 @@ export default class GraphItem extends Component {
     this.doStopInterval = this.doStopInterval.bind(this);
     this.isRunningInterval = this.isRunningInterval.bind(this);
     this.updateImage = this.updateImage.bind(this);
+    this.onErrorImage = this.onErrorImage.bind(this);
   }
 
   doStartInterval (src) {
@@ -73,7 +79,7 @@ export default class GraphItem extends Component {
         <img
           className="img-thumbnail img-responsive"
           src={this.state.src}
-          onError={this.onErrorImage.bind(this)} />
+          onError={this.onErrorImage} />
         <div className="caption">
           <span className="xtra-small float-right">{this.state.dt}</span>
           <h4>{this.props.graph.app}-{this.props.graph.instance}</h4>

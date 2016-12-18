@@ -38,6 +38,12 @@ class GraphList extends Component {
   }
 
 }
+GraphList.propTypes = {
+  graphs: React.PropTypes.array.isRequired,
+  timer: React.PropTypes.string.isRequired,
+  startTimer: React.PropTypes.func.isRequired,
+  stopTimer: React.PropTypes.func.isRequired
+};
 
 function mapStateToProps (state) {
   return {
