@@ -8,9 +8,9 @@ export default (state=[], action) => {
   case SELECT_APP:
     switch (action.payload) {
       case 'app1':
-        return ["test", "pre", "1", "2", "3"];
+        return ['test', 'pre', '1', '2', '3'];
       default :
-        return [ "test", "pre", "0" , "1", "2", "3", "4" ];
+        return [ 'test', 'pre', '0' , '1', '2', '3', '4' ];
     }
   }
 
