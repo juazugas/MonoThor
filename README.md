@@ -4,7 +4,7 @@
 # Created from repository ReduxSimpleStarter
 
 Interested in learning [Redux](https://www.udemy.com/react-redux/)?
-  > Original repository git@github.com:StephenGrider/ReduxSimpleStarter.gityy
+  > Original repository git@github.com:StephenGrider/ReduxSimpleStarter.git
 
 ###Getting Started###
 
