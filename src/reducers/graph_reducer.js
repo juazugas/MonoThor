@@ -18,13 +18,15 @@ export default function (state=[], action) {
   case CLEAR_GRAPHS:
     return [];
   case SHOW_GRAPHS:
+    let numMachines = 1;
     if (action.payload.pool === 'test' || action.payload.pool === 'pre') {
-      return payloadToGraph(2, action.payload);
+      numMachines = 2;
     } else if (action.payload.app === 'app1' ) {
-      return payloadToGraph(4, action.payload);
+      numMachines = 4;
     } else {
-      return payloadToGraph(6, action.payload);
+      numMachines = 6;
     }
+    return payloadToGraph(numMachines, action.payload);
   }
 
   return state;
