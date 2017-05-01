@@ -5,7 +5,7 @@ function TimerControl (props) {
   const timerActive = props.timer === STOP_TIMER;
 
   return (
-    <div className="row">
+    <div className="row timer-control">
       <div className="btn-group float-right">
         <button
           title="Pause"
