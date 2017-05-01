@@ -10,7 +10,8 @@
     "start": "node server.js",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "cover": "istanbul cover _mocha -- --compilers js:babel-core/register --require ./test/test_helper.js ./test/**/*_test.js -R spec "
   },
   "author": "Juan Zuriaga",
   "license": "MIT License",
@@ -26,6 +27,7 @@
     "eslint": "^3.12.2",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-react": "^6.8.0",
+    "istanbul": "^0.4.5",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
