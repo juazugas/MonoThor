@@ -75,7 +75,7 @@ export default class GraphItem extends Component {
 
   render() {
     return (
-      <div className="thumbnail">
+      <div className="thumbnail graph-item">
         <img
           className="img-thumbnail img-responsive"
           src={this.state.src}

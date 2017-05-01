@@ -1,5 +1,4 @@
-import sinon from 'sinon';
-import {renderComponent, expect} from '../test_helper';
+import {renderComponent, expect, sinon} from '../test_helper';
 
 import { START_TIMER, STOP_TIMER } from '../../src/actions/types';
 import TimerControl from '../../src/components/timer_control';

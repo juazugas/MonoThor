@@ -3,7 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import jsdom from 'jsdom';
+import sinon from 'sinon';
 import chai, { expect } from 'chai';
+import chaiString from 'chai-string';
 import chaiJquery from 'chai-jquery';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -14,6 +16,7 @@ global.window = global.document.defaultView;
 global.navigator = global.window.navigator;
 const $ = _$(window);
 
+chai.use(chaiString);
 chaiJquery(chai, chai.util, $);
 
 function renderComponent(ComponentClass, props = {}, state = {}) {
@@ -33,4 +36,4 @@ $.fn.simulate = function(eventName, value) {
   TestUtils.Simulate[eventName](this[0]);
 };
 
-export {renderComponent, expect};
+export {renderComponent, expect, sinon};
