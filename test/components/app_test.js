@@ -8,7 +8,19 @@ describe('App' , () => {
     component = renderComponent(App);
   });
 
-  it('renders something', () => {
+  it('should render main component', () => {
     expect(component).to.exist;
+  });
+
+  it('should contain title', () => {
+    expect(component.find('h2')).to.exist;
+  });
+
+  it('should reder a search bar', () => {
+    expect(component.find('.search-bar')).to.exist;
+  });
+
+  it('should reder a graph list', () => {
+    expect(component.find('.graph-list')).to.exist;
   });
 });

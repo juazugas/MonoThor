@@ -19,13 +19,13 @@ class GraphList extends Component {
 
   render() {
     if (!this.props.graphs || this.props.graphs.length==0) {
-      return <div className="container">Select the app to monitor</div>;
+      return <div className="container graph-list">Select the app to monitor</div>;
     }
 
     const { startTimer, stopTimer, timer } = this.props;
 
     return (
-      <div className="container">
+      <div className="container graph-list">
         <TimerControl
           startTimer={startTimer}
           stopTimer={stopTimer}

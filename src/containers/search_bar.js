@@ -83,7 +83,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="jumbotron">
+      <div className="jumbotron search-bar">
         <form name="select-monitor" className="form-inline" onSubmit={this.onFormSubmit}>
           <div className="form-group col-md-2">
             {this.renderSelect('app', this.onSelectAppChange, this.props.apps)}
