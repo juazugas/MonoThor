@@ -13,7 +13,17 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 ```
 	> git clone git@github.com:juazugas/MonoThor.git
 	> cd MonoThor
-	> npm install
-	> npm start
+	> yarn install
+	> yarn start
+```
+
+
+###Run the tests###
+
+```
+  > yarn run test       # run the test suite
+  > yarn run test:watch # run the test continuosly
+  > yarn run cover      # run code coverage
+  > yarn run tdd        # run the test and coverage report 
 ```
 
