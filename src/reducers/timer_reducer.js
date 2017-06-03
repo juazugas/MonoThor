@@ -7,5 +7,4 @@ export default (state='', action) => {
     return action.type;
   }
   return state;
-}
-
+};

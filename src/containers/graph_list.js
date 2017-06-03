@@ -10,8 +10,10 @@ class GraphList extends Component {
   renderGraphItems () {
     return this.props.graphs.map( (graph) => {
       return (
-        <div className="col-md-4" key={graph.machine}>
-          <GraphItem graph={graph} timer={this.props.timer} />
+        <div className="col-md-4"
+          key={graph.machine}>
+          <GraphItem graph={graph}
+            timer={this.props.timer} />
         </div>
       );
     });
@@ -49,7 +51,7 @@ function mapStateToProps (state) {
   return {
     graphs: state.graphs,
     timer: state.timer
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

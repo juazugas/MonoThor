@@ -13,7 +13,7 @@ export default class GraphItem extends Component {
     this.state = {
       src: props.graph.url,
       dt: new Date().toISOString()
-    }
+    };
     this.timerID = false;
 
     this.doStartInterval = this.doStartInterval.bind(this);
@@ -74,6 +74,7 @@ export default class GraphItem extends Component {
   }
 
   render() {
+    let graph_title = this.props.graph.app + '-' + this.props.graph.instance;
     return (
       <div className="thumbnail graph-item">
         <img
@@ -82,8 +83,8 @@ export default class GraphItem extends Component {
           onError={this.onErrorImage} />
         <div className="caption">
           <span className="xtra-small float-right">{this.state.dt}</span>
-          <h4>{this.props.graph.app}-{this.props.graph.instance}</h4>
-          <p><a href={this.props.graph.url}>{this.props.graph.machine}</a> ({this.props.graph.pool})</p>
+          <h4>{graph_title}</h4>
+          <p><a href={this.props.graph.url}>{this.props.graph.machine}</a> (<span>{this.props.graph.pool}</span>)</p>
         </div>
       </div>
     );

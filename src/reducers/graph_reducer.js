@@ -9,7 +9,7 @@ function payloadToGraph (times, payload) {
     return _.extend(_.clone(payload), {
       machine: `machine${index}`,
       url: GRAPH_URL.replace('{index}',index)
-    })
+    });
   });
 }
 
